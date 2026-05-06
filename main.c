@@ -6,5 +6,7 @@ int main(int argc, char const *argv[])
     char nombresProd[5][30];
     float tiempoProd[5];
 
+    printf("HOLAAA");
+
     return 0;
 }
