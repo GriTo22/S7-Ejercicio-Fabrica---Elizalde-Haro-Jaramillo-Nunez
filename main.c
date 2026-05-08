@@ -8,11 +8,15 @@ int main(int argc, char const *argv[])
     int recursosProd[5];
     //con demanda se refieren a la cantidad a fabricar
     int demandaProd[5];
+
     float tiempototal[5];
     int recursostotal[5];
 
     int opc=0, opc2=0, cont=0;
-    
+
+    float ltiempo=0;
+    int lrecursos=0;
+
 
     do
     {
@@ -20,16 +24,19 @@ int main(int argc, char const *argv[])
         switch (opc)
         {
         case 1:
+            registrarlimites(&ltiempo, &lrecursos);
+            break;
+        case 2:
             cont = registrarproductos(nombresProd, tiempoProd, recursosProd, demandaProd, cont);
             if (cont > 4){
                 printf("Se excedió de datos. Solo 5 productos");
                 break;
             }
             break;
-        case 2:
-            verdatos(nombresProd, tiempoProd, recursosProd, demandaProd, tiempototal, recursostotal,cont);
-            break;
         case 3:
+            verdatos(nombresProd, tiempoProd, recursosProd, demandaProd, tiempototal, recursostotal,cont,&ltiempo,&lrecursos);
+            break;
+        case 4:
 
         break;
         default:

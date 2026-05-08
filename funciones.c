@@ -3,6 +3,13 @@
 #include "funciones.h"
 
 
+void registrarlimites(float *tiempolim, int *recursoslim){
+    printf("Ingrese la cantidad de tiempo disponible (horas): ");
+    *tiempolim = validarFloatConRango(0, 1000000000);
+    printf("Ingrese la cantidad de recursos disponibles: ");
+    *recursoslim = validarenterosconrango(0, 10000000);
+}
+
 int registrarproductos(char nombres[5][30], float *tiempo, int *recursos, int *demanda, int cont){
     printf("Ingrese el nombre del producto %d: ", cont);
     leerCadena(nombres[cont],30);
@@ -15,29 +22,44 @@ int registrarproductos(char nombres[5][30], float *tiempo, int *recursos, int *d
     return cont + 1;
 }
 
-void verdatos(char nombres[5][30], float *tiempo, int *recursos, int *demanda, float *tiempot, int *recursost, int cont){
+void verdatos(char nombres[5][30], float *tiempo, int *recursos, int *demanda, float *tiempot, int *recursost, int cont, float *tiempolim, int *recursoslim){
 
     printf("#\t\tNombre\t\tTiempo\t\tRecursos\tDemanda\t\tTiempo(demanda)\t\tRecursos(demanda)\n");
     float tiempototal = 0;
     int recursostotal = 0;
+    
 
     for (int i = 0; i < cont; i++)
     {
+        /*Calcular tiempo y recursos segun la demanda*/
         tiempot[i] = tiempo[i] * demanda[i];
         recursost[i] = recursos[i] * demanda[i];
+
+        /*Imprimir la tabla*/
         printf("%d\t\t%s\t\t%.2f\t\t%d\t\t%d\t\t%.2f\t\t\t%d\n",i,nombres[i],tiempo[i],recursos[i],demanda[i],tiempot[i], recursost[i]);
         tiempototal = tiempototal + tiempot[i];
         recursostotal = recursostotal + recursost[i];
     }
-    
+    printf("\n");
     printf("Tiempo necesario total de la fabrica: %.2f\n", tiempototal);
     printf("Recursos necesarios total de la fabrica: %d\n", recursostotal);
+    printf("-----------------------------------------------------\n");
+    printf("Tiempo disponible: %.2f\n", *tiempolim);
+    printf("Recursos disponibles: %d\n", *recursoslim);
+    printf("-----------------------------------------------------\n");
+
+    /*Verificar si el tiempo y recursos definidos son menores a los disponibles*/
+    if(*tiempolim < tiempototal){
+        printf("El tiempo requerido es mayor al tiempo disponible\n");
+    }
+    if (*recursoslim < recursostotal){
+        printf("Los recursos requeridos son mayores a los recursos disponibles\n");
+    }
+    
 }
 
 
-
-
-
+/*FUNCIONES GENERALEEEEEEEEEEEEEES*/
 
 
 void leerCadena(char *cadena, int n){
@@ -47,16 +69,16 @@ void leerCadena(char *cadena, int n){
     cadena[len] = '\0';
 }
 
-
 int menu(){
     int opc=0;
     printf("Seleccione una opcion\n");
-    printf("1.Registrar producto\n");
-    printf("2.Ver datos\n");
-    printf("3.Editar un producto\n");
-    printf("4.Eliminar un producto\n");
+    printf("1.Definir recursos y tiempo límites\n");
+    printf("2.Registrar producto\n");
+    printf("3.Ver datos\n");
+    printf("4.Editar un producto\n");
+    printf("5.Eliminar un producto\n");
     printf(">> ");
-    opc = validarenterosconrango(1,3);
+    opc = validarenterosconrango(1,5);
     return opc;
 }
 
