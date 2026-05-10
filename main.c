@@ -12,47 +12,38 @@ int main(int argc, char const *argv[])
     float tiempototal[5];
     int recursostotal[5];
     int estadoProd[5] = {0, 0, 0, 0, 0}; 
-    int opc=0, opc2=0, cont=0;
+    int opc = 0, opc2 = 0;
 
-    float ltiempo=0;
-    int lrecursos=0;
-
+    float ltiempo = 0;
+    int lrecursos = 0;
 
     do
     {
         opc = menu();
         switch (opc)
         {
-        case 1:
-            registrarlimites(&ltiempo, &lrecursos);
-            break;
-        case 2:
-            if (cont >= 5){
-                printf("Se excedió de datos. Solo 5 productos\n");
-            } else {
-                cont = registrarproductos(nombresProd, tiempoProd, recursosProd, demandaProd, estadoProd, cont);
-            }
-            break;
-        case 3:
-            verdatos(nombresProd, tiempoProd, recursosProd, demandaProd, tiempototal, recursostotal, cont, &ltiempo, &lrecursos, estadoProd);
-            break;
-        case 4:
-            editarProducto(nombresProd, tiempoProd, recursosProd, demandaProd, estadoProd, cont);
-            break;
-        case 5:
-            eliminarProducto(nombresProd, estadoProd, cont);
-            break;
-        default:
-            break;
+            case 1:
+                registrarlimites(&ltiempo, &lrecursos);
+                break;
+            case 2:
+                // La funcion ahora gestiona sola el espacio disponible
+                registrarproductos(nombresProd, tiempoProd, recursosProd, demandaProd, estadoProd);
+                break;
+            case 3:
+                verdatos(nombresProd, tiempoProd, recursosProd, demandaProd, tiempototal, recursostotal, &ltiempo, &lrecursos, estadoProd);
+                break;
+            case 4:
+                editarProducto(nombresProd, tiempoProd, recursosProd, demandaProd, estadoProd);
+                break;
+            case 5:
+                eliminarProducto(nombresProd, estadoProd);
+                break;
+            default:
+                break;
         }
-        
 
-        printf("Ingresar otra opción? 1.si || 2.no ");
-        
+        printf("\nIngresar otra opcion? 1.si || 2.no:\n>>");
         opc2 = validarenterosconrango(1, 2);
     } while (opc2 == 1);
-
-
-
     return 0;
 }
