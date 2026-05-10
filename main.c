@@ -48,6 +48,7 @@ int main(int argc, char const *argv[])
         
 
         printf("Ingresar otra opción? 1.si || 2.no ");
+        
         opc2 = validarenterosconrango(1, 2);
     } while (opc2 == 1);
 
