@@ -47,15 +47,15 @@ void verdatos(char nombres[5][30], float *tiempo, int *recursos, int *demanda, f
         if (estado[i] == 1) 
         {
             /*Calcular tiempo y recursos segun la demanda*/
-            tiempot[i] = tiempo[i] * demanda[i];
-            recursost[i] = recursos[i] * demanda[i];
+            *(tiempot + i) = *(tiempo + i) * *(demanda + i);;
+            *(recursost + i) = *(recursos + i) * *(demanda + i);
             
             /*Imprimir la tabla*/
-            printf("%d\t\t%s\t\t%.2f\t\t%d\t\t%d\t\t%.2f\t\t\t%d\n", i + 1, nombres[i], tiempo[i], recursos[i], demanda[i], tiempot[i], recursost[i]);
+            printf("%d\t\t%s\t\t%.2f\t\t%d\t\t%d\t\t%.2f\t\t\t%d\n", i + 1, nombres[i], *(tiempo + i), *(recursos + i), *(demanda + i), *(tiempot + i), *(recursost + i));
             
             /* Acumular totales SOLO de los productos activos */
-            tiempototal = tiempototal + tiempot[i];
-            recursostotal = recursostotal + recursost[i];
+            tiempototal = tiempototal + *(tiempot + i);
+            recursostotal = recursostotal + *(recursost + i);
         }
     }
     
