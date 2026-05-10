@@ -34,7 +34,7 @@ int main(int argc, char const *argv[])
             }
             break;
         case 3:
-            verdatos(nombresProd, tiempoProd, recursosProd, demandaProd, tiempototal, recursostotal,cont,&ltiempo,&lrecursos);
+            verdatos(nombresProd, tiempoProd, recursosProd, demandaProd, tiempototal, recursostotal, cont, &ltiempo, &lrecursos, estadoProd);
             break;
         case 4:
 
