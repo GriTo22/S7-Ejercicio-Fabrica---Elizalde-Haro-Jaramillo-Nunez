@@ -22,7 +22,7 @@ int registrarproductos(char nombres[5][30], float *tiempo, int *recursos, int *d
     return cont + 1;
 }
 
-void verdatos(char nombres[5][30], float *tiempo, int *recursos, int *demanda, float *tiempot, int *recursost, int cont, float *tiempolim, int *recursoslim){
+void verdatos(char nombres[5][30], float *tiempo, int *recursos, int *demanda, float *tiempot, int *recursost, int cont, float *tiempolim, int *recursoslim, int *estado){
 
     printf("#\t\tNombre\t\tTiempo\t\tRecursos\tDemanda\t\tTiempo(demanda)\t\tRecursos(demanda)\n");
     float tiempototal = 0;
@@ -31,15 +31,22 @@ void verdatos(char nombres[5][30], float *tiempo, int *recursos, int *demanda, f
 
     for (int i = 0; i < cont; i++)
     {
-        /*Calcular tiempo y recursos segun la demanda*/
-        tiempot[i] = tiempo[i] * demanda[i];
-        recursost[i] = recursos[i] * demanda[i];
+        /* Filtro de Eliminación Lógica: Solo procesar si el estado es 1 (activo) */
+        if (estado[i] == 1) 
+        {
+            /*Calcular tiempo y recursos segun la demanda*/
+            tiempot[i] = tiempo[i] * demanda[i];
+            recursost[i] = recursos[i] * demanda[i];
 
-        /*Imprimir la tabla*/
-        printf("%d\t\t%s\t\t%.2f\t\t%d\t\t%d\t\t%.2f\t\t\t%d\n",i,nombres[i],tiempo[i],recursos[i],demanda[i],tiempot[i], recursost[i]);
-        tiempototal = tiempototal + tiempot[i];
-        recursostotal = recursostotal + recursost[i];
+            /*Imprimir la tabla*/
+            printf("%d\t\t%s\t\t%.2f\t\t%d\t\t%d\t\t%.2f\t\t\t%d\n", i, nombres[i], tiempo[i], recursos[i], demanda[i], tiempot[i], recursost[i]);
+            
+            /* Acumular totales SOLO de los productos activos */
+            tiempototal = tiempototal + tiempot[i];
+            recursostotal = recursostotal + recursost[i];
+        }
     }
+    
     printf("\n");
     printf("Tiempo necesario total de la fabrica: %.2f\n", tiempototal);
     printf("Recursos necesarios total de la fabrica: %d\n", recursostotal);
@@ -54,11 +61,8 @@ void verdatos(char nombres[5][30], float *tiempo, int *recursos, int *demanda, f
     }
     if (*recursoslim < recursostotal){
         printf("Los recursos requeridos son mayores a los recursos disponibles\n");
-    }
-    
+    } 
 }
-
-
 /*FUNCIONES GENERALEEEEEEEEEEEEEES*/
 
 
