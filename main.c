@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
 
     float tiempototal[5];
     int recursostotal[5];
-
+    int estadoProd[5] = {0, 0, 0, 0, 0}; 
     int opc=0, opc2=0, cont=0;
 
     float ltiempo=0;
