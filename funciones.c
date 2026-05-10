@@ -10,7 +10,7 @@ void registrarlimites(float *tiempolim, int *recursoslim){
     *recursoslim = validarenterosconrango(0, 10000000);
 }
 
-int registrarproductos(char nombres[5][30], float *tiempo, int *recursos, int *demanda, int cont){
+int registrarproductos(char nombres[5][30], float *tiempo, int *recursos, int *demanda, int *estado, int cont){
     printf("Ingrese el nombre del producto %d: ", cont);
     leerCadena(nombres[cont],30);
     printf("Ingrese el tiempo que toma elaborar el producto %d: ", cont);
@@ -19,6 +19,7 @@ int registrarproductos(char nombres[5][30], float *tiempo, int *recursos, int *d
     *(recursos + cont) = validarenterosconrango(0, 150);
     printf("Ingrese la demanda del producto %d: ", cont);
     *(demanda + cont) = validarenterosconrango(0, 150);
+    estado[cont] = 1;
     return cont + 1;
 }
 

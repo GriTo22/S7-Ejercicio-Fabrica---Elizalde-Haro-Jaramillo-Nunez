@@ -30,7 +30,7 @@ int main(int argc, char const *argv[])
             if (cont >= 5){
                 printf("Se excedió de datos. Solo 5 productos\n");
             } else {
-                cont = registrarproductos(nombresProd, tiempoProd, recursosProd, demandaProd, cont);
+                cont = registrarproductos(nombresProd, tiempoProd, recursosProd, demandaProd, estadoProd, cont);
             }
             break;
         case 3:
