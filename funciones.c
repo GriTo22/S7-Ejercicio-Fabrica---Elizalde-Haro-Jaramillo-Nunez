@@ -37,6 +37,7 @@ void registrarproductos(char nombres[5][30], float *tiempo, int *recursos, int *
 
 void verdatos(char nombres[5][30], float *tiempo, int *recursos, int *demanda, float *tiempot, int *recursost, float *tiempolim, int *recursoslim, int *estado){
 
+    /*Ver datos de los productos registrados*/
     printf("#\t\tNombre\t\tTiempo\t\tRecursos\tDemanda\t\tTiempo(demanda)\t\tRecursos(demanda)\n");
     float tiempototal = 0;
     int recursostotal = 0;
