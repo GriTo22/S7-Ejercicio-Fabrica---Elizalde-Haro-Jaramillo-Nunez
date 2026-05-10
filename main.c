@@ -3,11 +3,11 @@
 
 int main(int argc, char const *argv[])
 {
-    char nombresProd[5][30];
-    float tiempoProd[5];
-    int recursosProd[5];
-    //con demanda se refieren a la cantidad a fabricar
-    int demandaProd[5];
+    char nombresProd[5][30];                           
+    float tiempoProd[5];                               
+    int recursosProd[5];                               
+    //con demanda se refieren a la cantidad a fabricar 
+    int demandaProd[5];                                
 
     float tiempototal[5];
     int recursostotal[5];
