@@ -43,7 +43,7 @@ void verdatos(char nombres[5][30], float *tiempo, int *recursos, int *demanda, f
 
     for (int i = 0; i < 5; i++)
     {
-        /* Filtro de Eliminación Lógica: Solo procesar si el estado es 1 (activo) */
+        /*Solo procesar si el estado es 1*/
         if (estado[i] == 1) 
         {
             /*Calcular tiempo y recursos segun la demanda*/
@@ -53,7 +53,7 @@ void verdatos(char nombres[5][30], float *tiempo, int *recursos, int *demanda, f
             /*Imprimir la tabla*/
             printf("%d\t\t%s\t\t%.2f\t\t%d\t\t%d\t\t%.2f\t\t\t%d\n", i + 1, nombres[i], tiempo[i], recursos[i], demanda[i], tiempot[i], recursost[i]);
             
-            /* Acumular totales SOLO de los productos activos */
+            /* Acumular totales */
             tiempototal = tiempototal + tiempot[i];
             recursostotal = recursostotal + recursost[i];
         }
@@ -82,16 +82,18 @@ void eliminarProducto(char nombres[5][30], int *estado) {
     printf("Ingrese el nombre del producto a eliminar: ");
     leerCadena(nombreBuscado, 30);
  
+    /*Encontrar nombres*/
     for(int i = 0; i < 5; i++) {
         if(estado[i] == 1) { 
-            if(strcmp(nombres[i], nombreBuscado) == 0) {
-                indiceEncontrado = i;
+            if(strcmp(nombres[i], nombreBuscado) == 0) { /*Si son exactamente iguales strcmp devuelve 0*/
+                indiceEncontrado = i; /*se guarda la posicion a elminar*/
                 break;
             }
         }
     }
+
     if(indiceEncontrado != -1) {
-        estado[indiceEncontrado] = 0; 
+        estado[indiceEncontrado] = 0; /*ya no ocupa 1, ahora ocupa 0. Eso significa que no está activo ni se tomará en cuenta*/
         printf("\nEl producto '%s' ha sido eliminado con exito.", nombreBuscado);
     } else {
         printf("\nNo se encuentra el producto: '%s'.", nombreBuscado);
@@ -102,6 +104,7 @@ void editarProducto(char nombres[5][30], float *tiempo, int *recursos, int *dema
     char nombreBuscado[30];
     int indiceEncontrado = -1;
 
+    /*Encontrar nombres*/
     printf("Ingrese el nombre del producto que quiere editar: ");
     leerCadena(nombreBuscado, 30);
 
@@ -114,6 +117,7 @@ void editarProducto(char nombres[5][30], float *tiempo, int *recursos, int *dema
         }
     }
 
+    /*repetir el registro pero con el nuevo indice*/
     if(indiceEncontrado != -1){
         printf("Ingrese el nuevo nombre: ");
         leerCadena(nombres[indiceEncontrado], 30);
@@ -171,7 +175,7 @@ float validarFloatConRango(float a, float b){
     float num;
     do {
         aux = scanf("%f", &num);
-        while (getchar() != '\n'); // Limpia el buffer
+        while (getchar() != '\n');
         if (aux != 1 || num < a || num > b){
             printf("El valor ingresado es incorrecto. Ingrese nuevamente: ");
         }
