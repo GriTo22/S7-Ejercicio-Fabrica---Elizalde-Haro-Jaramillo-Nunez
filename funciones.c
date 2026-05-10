@@ -84,7 +84,7 @@ void eliminarProducto(char nombres[5][30], int *estado) {
     leerCadena(nombreBuscado, 30);
  
     for(int i = 0; i < 5; i++) {
-        if(estado[i] == 1) { 
+        if(*(estado + i) == 1) { 
             if(strcmp(nombres[i], nombreBuscado) == 0) {
                 indiceEncontrado = i;
                 break;
@@ -92,7 +92,7 @@ void eliminarProducto(char nombres[5][30], int *estado) {
         }
     }
     if(indiceEncontrado != -1) {
-        estado[indiceEncontrado] = 0; 
+        *(estado + indiceEncontrado) = 0; 
         printf("\nEl producto '%s' ha sido eliminado con exito.", nombreBuscado);
     } else {
         printf("\nNo se encuentra el producto: '%s'.", nombreBuscado);
