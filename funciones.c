@@ -64,6 +64,72 @@ void verdatos(char nombres[5][30], float *tiempo, int *recursos, int *demanda, f
         printf("Los recursos requeridos son mayores a los recursos disponibles\n");
     } 
 }
+
+void eliminarProducto(char nombres[5][30], int *estado, int cont) {
+    char nombreBuscado[30];
+    int indiceEncontrado = -1; 
+    printf("Ingrese el nombre del producto a eliminar: ");
+    leerCadena(nombreBuscado,30);
+ 
+    for(int i = 0; i < cont; i++) {
+        if(estado[i]==1) { 
+            if(strcmp(nombres[i], nombreBuscado) == 0) {
+                indiceEncontrado = i;
+                break;
+            }
+        }
+    }
+    if(indiceEncontrado != -1) {
+        estado[indiceEncontrado] = 0; 
+        printf("\nEl producto '%s' ha sido eliminado con exito.", nombreBuscado);
+    } else {
+        printf("\nNo se encuentra el producto: '%s'.", nombreBuscado);
+    }
+}
+
+void editarProducto(char nombres[5][30], float *tiempo, int *recursos, int *demanda, int *estado, int cont){
+
+    char nombreBuscado[30];
+    int indiceEncontrado = -1;
+
+    printf("Ingrese el nombre del producto que quiere editar: ");
+    leerCadena(nombreBuscado, 30);
+
+    for(int i = 0; i < cont; i++){
+
+        if(estado[i] == 1){
+
+            if(strcmp(nombres[i], nombreBuscado) == 0){
+
+                indiceEncontrado = i;
+                break;
+            }
+        }
+    }
+
+    if(indiceEncontrado != -1){
+
+        printf("Ingrese el nuevo nombre: ");
+        leerCadena(nombres[indiceEncontrado], 30);
+
+        printf("Ingrese el nuevo tiempo: ");
+        tiempo[indiceEncontrado] = validarFloatConRango(0,150);
+
+        printf("Ingrese la nueva cantidad de recursos: ");
+        recursos[indiceEncontrado] = validarenterosconrango(0,150);
+
+        printf("Ingrese la nueva demanda: ");
+        demanda[indiceEncontrado] = validarenterosconrango(0,150);
+
+        printf("\nProducto editado correctamente.\n");
+    }
+    else{
+
+        printf("\nNo se encontro el producto '%s'.", nombreBuscado);
+    }
+}
+
+
 /*FUNCIONES GENERALEEEEEEEEEEEEEES*/
 
 
@@ -116,3 +182,4 @@ float validarFloatConRango(float a, float b){
     return num;
     
 }
+

@@ -37,8 +37,11 @@ int main(int argc, char const *argv[])
             verdatos(nombresProd, tiempoProd, recursosProd, demandaProd, tiempototal, recursostotal, cont, &ltiempo, &lrecursos, estadoProd);
             break;
         case 4:
-
-        break;
+            editarProducto(nombresProd, tiempoProd, recursosProd, demandaProd, estadoProd, cont);
+            break;
+        case 5:
+            eliminarProducto(nombresProd, estadoProd, cont);
+            break;
         default:
             break;
         }
