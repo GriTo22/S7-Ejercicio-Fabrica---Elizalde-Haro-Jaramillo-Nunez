@@ -27,10 +27,10 @@ int main(int argc, char const *argv[])
             registrarlimites(&ltiempo, &lrecursos);
             break;
         case 2:
-            cont = registrarproductos(nombresProd, tiempoProd, recursosProd, demandaProd, cont);
-            if (cont > 4){
-                printf("Se excedió de datos. Solo 5 productos");
-                break;
+            if (cont >= 5){
+                printf("Se excedió de datos. Solo 5 productos\n");
+            } else {
+                cont = registrarproductos(nombresProd, tiempoProd, recursosProd, demandaProd, cont);
             }
             break;
         case 3:
