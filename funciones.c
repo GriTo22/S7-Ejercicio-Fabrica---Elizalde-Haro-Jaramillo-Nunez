@@ -82,6 +82,7 @@ void eliminarProducto(char nombres[5][30], int *estado, int cont) {
     if(indiceEncontrado != -1) {
         estado[indiceEncontrado] = 0; 
         printf("\nEl producto '%s' ha sido eliminado con exito.", nombreBuscado);
+        cont = cont - 1;
     } else {
         printf("\nNo se encuentra el producto: '%s'.", nombreBuscado);
     }
